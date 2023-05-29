@@ -36,14 +36,30 @@ var special = [" ", "!", "\u0022", "#", "$", "%", "&", "\u0027", "(", ")", "*", 
               "<", "=", ">", "?", "@", "[", "\u005c", "]", "^", "_", "`", "{", "|", "~"];
 
 
-//establish booleans
+//establish booleans ------------------------------------
 var lowerSelected = true;
-var upperSelected = false;
-var numericSelected = true;
-var specialSelected = false;
+var upperSelected = true;
+var numericSelected = false;
+var specialSelected = true;
 
 if(lowerSelected)   {  pool = pool.concat(lower); }
 if(upperSelected)   {  pool = pool.concat(upper); }
 if(numericSelected) {  pool = pool.concat(numeric); }
 if(specialSelected) {  pool = pool.concat(special); }
-console.log(pool);
+
+
+//generate password -------------------------------------------------
+var min = 8;
+var max = 128;
+var numOfChar = Math.floor(Math.random()* (max - min + 1) + min);
+
+var word = "";
+//adding a new char randomly chosen from pool for each numOFChar
+for (let i = 0; i < numOfChar; i++)
+{
+  word += pool[Math.floor(Math.random()* pool.length)];
+}
+
+
+console.log(numOfChar);
+console.log(word);
