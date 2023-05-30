@@ -16,10 +16,20 @@ function writePassword() {
 var getNum = function() 
 {
   var inputLength = document.getElementById("charLength").value;
-  
+ 
   console.log(inputLength);
   return inputLength;
 };
+
+var checkNum = function(number)
+{
+  if(number < 8 || number > 128)
+  {
+   return false;   
+    
+  }  
+  return true;
+}
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
@@ -64,8 +74,13 @@ function generatePool()
 
 function generatePassword()
 {
+  //recieves character length input value
   numOfChar = getNum();
-
+  //checks validity and if wrong returns message
+  if(!checkNum(numOfChar))
+   {return "Warning Character Length is Invalid!"; } 
+  
+   // creates the pool of chacters
   generatePool();
 
   var word = Array();
