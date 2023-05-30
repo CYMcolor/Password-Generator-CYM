@@ -1,6 +1,5 @@
 // Assignment code here
 
-//*  //starter code
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
@@ -13,11 +12,18 @@ function writePassword() {
   passwordText.value = password;
 
 }
-
+// add input for word length
+var getNum = function() 
+{
+  var inputLength = document.getElementById("charLength").value;
+  
+  console.log(inputLength);
+  return inputLength;
+};
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-//*/
+
 
 //Init||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
@@ -39,42 +45,45 @@ var special = [" ", "!", "\u0022", "#", "$", "%", "&", "\u0027", "(", ")", "*", 
 
 //establish booleans ------------------------------------
 var lowerSelected = true;
-var upperSelected = false;
+var upperSelected = true;
 var numericSelected = true;
-var specialSelected = false;
+var specialSelected = true;
 // length of password
 var numOfChar = 8;
 
 //end of Init||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
+function generatePool()
+{
+   //add array to pool if selected
+   if(lowerSelected)   {  pool = pool.concat(lower); }
+   if(upperSelected)   {  pool = pool.concat(upper); }
+   if(numericSelected) {  pool = pool.concat(numeric); }
+   if(specialSelected) {  pool = pool.concat(special); }
+}
+
 function generatePassword()
 {
-  //add array to pool if selected
-  if(lowerSelected)   {  pool = pool.concat(lower); }
-  if(upperSelected)   {  pool = pool.concat(upper); }
-  if(numericSelected) {  pool = pool.concat(numeric); }
-  if(specialSelected) {  pool = pool.concat(special); }
+  numOfChar = getNum();
 
-  //generate password -------------------------------------------------
+  generatePool();
 
   var word = Array();
-  //adding a new char randomly chosen from pool for each numOFChar
+  //adding a new char randomly chosen from pool for each numOfChar
   for (let i = 0; i < numOfChar; i++)
   {
     word[i] = pool[Math.floor(Math.random()* pool.length)];
   }
 
-  // guarantee the selected types charcater is in word
+  // guarantee the selected types charcater is in word------------
   //makes an array of 4 random indexes to potentially replace
-  var gar = randomIndex(0);
-  console.log(gar);
+  var gar = randomIndex();
 
   //if selected replaces char using randomly generated index form gar
   if(lowerSelected)   {  word[gar[0]] = lower[Math.floor(Math.random()* lower.length)] }
   if(upperSelected)   {  word[gar[1]] = upper[Math.floor(Math.random()* upper.length)] }
   if(numericSelected) {  word[gar[2]] = numeric[Math.floor(Math.random()* numeric.length)] }
   if(specialSelected) {  word[gar[3]] = special[Math.floor(Math.random()* special.length)] }
-  console.log(word);
 
   //convert word to string
   //join combines the char with seperator in parameter, and trim removes white spaces
@@ -82,7 +91,6 @@ function generatePassword()
   return word.join('').trim();
 
 }
-
 
 function randomIndex()
 {
@@ -105,26 +113,8 @@ function randomIndex()
       }
       gar[i] = curr;
     }
-    
   }
+  console.log(gar);
+
   return gar;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*// random length
-var min = 8;
-var max = 128;
-var numOfChar = Math.floor(Math.random()* (max - min + 1) + min);
-//*/ //end of ranfomlength
