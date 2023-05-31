@@ -8,10 +8,11 @@ var generateBtn = document.querySelector("#generate");
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
-
+  
   passwordText.value = password;
 
 }
+
 // add input for word length
 var getNum = function() 
 {
@@ -54,14 +55,32 @@ var special = [" ", "!", "\u0022", "#", "$", "%", "&", "\u0027", "(", ")", "*", 
                 "<", "=", ">", "?", "@", "[", "\u005c", "]", "^", "_", "`", "{", "|", "~"];
 
 //establish booleans ------------------------------------
-var lowerSelected = true;
-var upperSelected = true;
-var numericSelected = true;
-var specialSelected = true;
+var lowerSelected = false;
+var upperSelected = false;
+var numericSelected = false;
+var specialSelected = false;
 // length of password
 var numOfChar = 8;
 
 //end of Init||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+function booleanChecks()
+{
+  //sets the boolean values to user checkboxes
+  if(document.getElementById("lowerCheck").checked)
+    lowerSelected = true;
+  if(document.getElementById("upperCheck").checked)
+    upperSelected =true;
+  if(document.getElementById("numericCheck").checked)
+    numericSelected =true;
+  if(document.getElementById("specialCheck").checked)
+    specialSelected =true;  
+  //if all are unchecked
+  // if(lowerSelected &&  upperSelected && numericSelected && specialSelected)
+  // {
+
+  // }  
+
+}
 
 function generatePool()
 {
@@ -81,6 +100,8 @@ function generatePassword()
    {return "Warning Character Length is Invalid!"; } 
   
    // creates the pool of chacters
+  booleanChecks();
+  console.log(numericSelected);
   generatePool();
 
   var word = Array();
