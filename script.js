@@ -104,15 +104,19 @@ function generatePassword()
 {
   //recieves character length input value
   numOfChar = getNum();
-  //checks validity and if wrong returns message
-  if(!checkNum(numOfChar))
+  //checks validity and if wrong returns  appropiate message
+  // also assign boolean variables
+  if(!checkNum(numOfChar) && !booleanChecks())
   {
-    return "Warning Character Length is Invalid!"; 
+    return "Error: Character length is invalid and at least one character type must be checked!"; 
   } 
-   // assign boolean variables
-  if(!booleanChecks())
+  else if (!checkNum(numOfChar) && booleanChecks())
   {
-    return "At least one character type must be checked!"
+    return "Error: Character length is invalid"
+  }
+  else if (checkNum(numOfChar) && !booleanChecks())
+  {
+    return "Error: At least one character type must be checked!"
   }
   //creates pool of characters
   generatePool();

@@ -139,11 +139,11 @@ button[disabled] {
 /*my code added
   make character type selection look better */
 
-section ul
+.charType ul
 {
   padding: 0;
 }
-section ul li
+.charType ul li
 {
   display: inline-block;
   margin-right: 10px;
