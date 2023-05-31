@@ -25,14 +25,12 @@ var checkNum = function(number)
   if(number < 8 || number > 128)
   {
    return false;   
-    
   }  
   return true;
 }
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-
 
 //Init||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
@@ -118,6 +116,8 @@ function generatePassword()
   {
     return "Error: At least one character type must be checked!"
   }
+  //moves on to rest of code if there are no invalid inputs 
+
   //creates pool of characters
   generatePool();
 
