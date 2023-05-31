@@ -129,10 +129,14 @@ function generatePassword()
   var gar = randomIndex();
 
   //if selected replaces char using randomly generated indexes with selected charcter type 
-  if(lowerSelected)   {  word[gar[0]] = lower[Math.floor(Math.random()* lower.length)] }
-  if(upperSelected)   {  word[gar[1]] = upper[Math.floor(Math.random()* upper.length)] }
-  if(numericSelected) {  word[gar[2]] = numeric[Math.floor(Math.random()* numeric.length)] }
-  if(specialSelected) {  word[gar[3]] = special[Math.floor(Math.random()* special.length)] }
+  if(lowerSelected)   
+    {  word[gar[0]] = lower[Math.floor(Math.random()* lower.length)] }
+  if(upperSelected)   
+    {  word[gar[1]] = upper[Math.floor(Math.random()* upper.length)] }
+  if(numericSelected) 
+    {  word[gar[2]] = numeric[Math.floor(Math.random()* numeric.length)] }
+  if(specialSelected)
+    {  word[gar[3]] = special[Math.floor(Math.random()* special.length)] }
 
   //convert word to string
   //join combines the char with seperator in parameter, and trim removes white spaces

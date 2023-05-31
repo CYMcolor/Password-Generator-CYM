@@ -135,3 +135,16 @@ button[disabled] {
     font-size: 0.8rem;
   }
 }
+
+/*my code added
+  make character type selection look better */
+
+section ul
+{
+  padding: 0;
+}
+section ul li
+{
+  display: inline-block;
+  margin-right: 10px;
+}
