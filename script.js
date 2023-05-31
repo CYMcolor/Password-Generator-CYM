@@ -68,22 +68,33 @@ function booleanChecks()
   //sets the boolean values to user checkboxes
   if(document.getElementById("lowerCheck").checked)
     lowerSelected = true;
+  else
+    lowerSelected = false;
   if(document.getElementById("upperCheck").checked)
     upperSelected =true;
+  else
+    upperSelected = false;
   if(document.getElementById("numericCheck").checked)
     numericSelected =true;
+  else  
+    numericSelected = false;
   if(document.getElementById("specialCheck").checked)
-    specialSelected =true;  
+    specialSelected =true; 
+  else
+    specialSelected = false; 
   //if all are unchecked
-  // if(lowerSelected &&  upperSelected && numericSelected && specialSelected)
-  // {
-
-  // }  
+  if(!lowerSelected &&  !upperSelected && !numericSelected && !specialSelected)
+  {
+    return false;
+  }  
+  else return true;
 
 }
 
 function generatePool()
 {
+   //refresh pool
+   pool = Array();
    //add array to pool if selected
    if(lowerSelected)   {  pool = pool.concat(lower); }
    if(upperSelected)   {  pool = pool.concat(upper); }
@@ -100,8 +111,11 @@ function generatePassword()
    {return "Warning Character Length is Invalid!"; } 
   
    // creates the pool of chacters
-  booleanChecks();
-  console.log(numericSelected);
+   if(!booleanChecks())
+   {
+    return "At Least one character type must be checked!"
+   }
+  console.log(booleanChecks());
   generatePool();
 
   var word = Array();
