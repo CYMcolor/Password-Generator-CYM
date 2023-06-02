@@ -8,7 +8,14 @@ var generateBtn = document.querySelector("#generate");
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
-  
+  //change color to red if invalid inputs and reset to black if valid
+  if(!checkNum(numOfChar) || !booleanChecks())
+  {
+    passwordText.setAttribute("style", "color: red");
+  }
+  else{
+    passwordText.setAttribute("style", "color: black");
+  }
   passwordText.value = password;
 
 }
@@ -17,11 +24,17 @@ function writePassword() {
 var getNum = function() 
 {
   var inputLength = document.getElementById("charLength").value;
+  
   return inputLength;
 };
+
 //check if unmber is in the range of 8-128
 var checkNum = function(number)
 {
+  if(isNaN(number)) //makes sure that non numbers are also invalid
+  {
+    return false;
+  }
   if(number < 8 || number > 128)
   {
    return false;   
@@ -37,17 +50,17 @@ generateBtn.addEventListener("click", writePassword);
 //init arrays ------------------------------------------
 var pool = Array();
 
-var lower = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+var lower = "abcdefghijklmnopqrstuvwxyz".split('');
 var upper = Array();
 for( let i = 0; i < lower.length; i++)
 {
   upper[i] = lower[i].toUpperCase();
 }
-var numeric = ["0","1","2","3","4","5","6","7","8","9"];
+var numeric = "0123456789".split('');
 
 //the special array: " !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~"
 // " = \u0022, ' = \u0027, \ = \u005c
-var special = [" ", "!", "\u0022", "#", "$", "%", "&", "\u0027", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";",
+var special = [" ", "!", "\"", "#", "$", "%", "&", "\'", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";",
                 "<", "=", ">", "?", "@", "[", "\u005c", "]", "^", "_", "`", "{", "|", "}", "~"];
 
 //establish booleans ------------------------------------
@@ -62,22 +75,11 @@ var numOfChar = 8;
 function booleanChecks()
 {
   //sets the boolean values to user checkboxes
-  if(document.getElementById("lowerCheck").checked)
-    lowerSelected = true;
-  else
-    lowerSelected = false;
-  if(document.getElementById("upperCheck").checked)
-    upperSelected =true;
-  else
-    upperSelected = false;
-  if(document.getElementById("numericCheck").checked)
-    numericSelected =true;
-  else  
-    numericSelected = false;
-  if(document.getElementById("specialCheck").checked)
-    specialSelected =true; 
-  else
-    specialSelected = false; 
+  lowerSelected = document.getElementById("lowerCheck").checked;
+  upperSelected = document.getElementById("upperCheck").checked;
+  numericSelected = document.getElementById("numericCheck").checked;
+  specialSelected = document.getElementById("specialCheck").checked;
+  
   //if all are unchecked
   if(!lowerSelected &&  !upperSelected && !numericSelected && !specialSelected)
   {
@@ -106,11 +108,11 @@ function generatePassword()
   // also assign boolean variables
   if(!checkNum(numOfChar) && !booleanChecks())
   {
-    return "Error: Character length is invalid and at least one character type must be checked!"; 
+    return "Error: Password length is invalid \n and at least one character type must be checked!"; 
   } 
   else if (!checkNum(numOfChar) && booleanChecks())
   {
-    return "Error: Character length is invalid"
+    return "Error: Password length is invalid"
   }
   else if (checkNum(numOfChar) && !booleanChecks())
   {
